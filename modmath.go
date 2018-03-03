@@ -40,3 +40,44 @@ func Solve(a, b, m int) (int, error) {
 	// else, no solution
 	return 0, NoSolution
 }
+
+// Solves the equation x=a^b mod m. Note that there is not as large of a worry
+// about overflowing, as a^b will not be calculated!
+func SolveExp(a, b, m int) int {
+	// would use log2 but I don't want to depend on math library
+	ints := []int{a*a}
+
+	for j := 4; j < b; j *= 2 {
+		last := ints[len(ints) - 1]
+		ints = append(ints, Lpr(last*last, m))
+	}
+
+	// Make a map of the powers of the ints.
+	// So {7, 7, 4, 4, 7, 7} would become {7:4, 4:2}
+	eq := make(map[int]int)
+	for _, e := range ints {
+		eq[e]++
+	}
+
+	// Simplify the map as much as possible
+	modified := true
+	for modified {
+		modified = false
+		next := make(map[int]int)
+
+		for k, v := range eq {
+			if v > 1 {
+				next[k] -= 2
+				next[Lpr(k*k, m)]++
+				modified = true
+			}
+		}
+	}
+
+	prod := 1
+	for k := range eq {
+		prod = Lpr(prod * k, m)
+	}
+
+	return prod
+}
