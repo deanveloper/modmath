@@ -2,9 +2,9 @@ package modmath
 
 // This file is for stuff related to the chinese remainder theorem!
 
-// Solves x=a mod n; x=b mod m by using the chinese remainder theorem.
-func SolveCrt(a, n, b, m int) int {
-	s, t := eea(n, m)
+// Solves x=a mod m; x=b mod n by using the chinese remainder theorem.
+func SolveCrt(a, m, b, n int) int {
+	s, t := eea(m, n)
 	return b * s * m + a * n * t
 }
 

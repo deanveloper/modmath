@@ -11,29 +11,29 @@ var NoSolution = errors.New("no solution")
 
 // Finds the least positive residue of a number
 // in a given modulus
-func Lpr(a, n int) int {
-	c := a / n
-	return a - c * n
+func Lpr(a, m int) int {
+	c := a / m
+	return a - c *m
 }
 
 // Solves the equation ax=b mod n. Note that
 // if there are multiple LPR solutions that the
 // lowest one is returned. If there are no solutions,
 // then (0, NoSolution) is returned
-func Solve(a, b, n int) (int, error) {
-	gcd := gcdEuclid(a, n)
+func Solve(a, b, m int) (int, error) {
+	gcd := gcdEuclid(a, m)
 
-	// If a and n are coprime, just multiply by the inverse
+	// If a and m are coprime, just multiply by the inverse
 	if gcd == 1 {
-		aInv, _ := eea(a, n)
-		return Lpr(aInv * b, n), nil
+		aInv, _ := eea(a, m)
+		return Lpr(aInv * b, m), nil
 	}
 
-	// If gcd divides b evenly, then solve a/d x = b/d mod n/d (d = gcd)
+	// If gcd divides b evenly, then solve a/d x = b/d mod m/d (d = gcd)
 	if Lpr(b, gcd) == 0 {
 		ad := a / gcd
 		bd := b / gcd
-		nd := n / gcd
+		nd := m / gcd
 		return Solve(ad, bd, nd)
 	}
 
