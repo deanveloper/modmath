@@ -6,20 +6,10 @@ package modmath
 
 // Finds the GCD using the euclidean algorithm
 func gcdEuclid(a, b int) int {
-	// first, make sure b < a
-	if  b > a {
-		return gcdEuclid(b, a)
-	}
-
-	// now, solve a = cb + r
-	c := a / b
-	r := a - c*b
-
+	r := a - a / b * b
 	if r == 0 {
 		return b
 	}
-
-	// and recurse
 	return gcdEuclid(b, r)
 }
 
