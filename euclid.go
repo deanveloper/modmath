@@ -29,7 +29,8 @@ func gcdEuclid(a, b int) int {
 func eea(a, b int) (int, int) {
 	// first, make sure b < a
 	if b > a {
-		return eea(b, a)
+		x, y := eea(b, a)
+		return y, x
 	}
 
 	ai := a
