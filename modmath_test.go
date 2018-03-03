@@ -10,7 +10,7 @@ import (
 )
 
 func TestLpr(t *testing.T) {
-	nikola.SuggestEqual(t, 5, Lpr(0, 5))
+	nikola.SuggestEqual(t, 0, Lpr(0, 5))
 	nikola.SuggestEqual(t, 1, Lpr(1, 10))
 	nikola.SuggestEqual(t, 2, Lpr(202, 10))
 	nikola.SuggestEqual(t, 3, Lpr(47291873, 4729187))
