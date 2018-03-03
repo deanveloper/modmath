@@ -26,7 +26,8 @@ func gcdEuclid(a, b int) int {
 // Finds x and y such that: gcdEuclid(a, b) = ax + by.
 //
 // The function is named because it uses the Extended Euclidean Algorithm to do this.
-
+//
+// This implementation is based on the wikibooks.org recursive python implementation.
 func eea(a, b int) (x, y, gcd int) {
 	if a == 0 {
 		return 0, 1, b
