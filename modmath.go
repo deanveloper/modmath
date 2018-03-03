@@ -5,7 +5,9 @@
 // which can be found in the bigmod package (github.com/deanveloper/modmath/bigmod)
 package modmath
 
-import "errors"
+import (
+	"errors"
+)
 
 var NoSolution = errors.New("no solution")
 
@@ -13,7 +15,11 @@ var NoSolution = errors.New("no solution")
 // in a given modulus
 func Lpr(a, m int) int {
 	c := a / m
-	return a - c * m
+	r := a - c * m
+	if r < 0 {
+		r += m
+	}
+	return r
 }
 
 // Solves the equation ax=b mod n. Note that
@@ -25,7 +31,8 @@ func Solve(a, b, m int) (int, error) {
 
 	// If a and m are coprime, just multiply by the inverse
 	if gcd == 1 {
-		aInv, _ := eea(a, m)
+		aInv, _, _:= eea(a, m)
+		aInv = Lpr(aInv, m)
 		return Lpr(aInv * b, m), nil
 	}
 
