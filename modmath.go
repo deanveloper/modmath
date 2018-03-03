@@ -5,6 +5,10 @@
 // which can be found in the bigmod package (github.com/deanveloper/modmath/bigmod)
 package modmath
 
+import "errors"
+
+var NoSolution = errors.New("no solution")
+
 // Finds the least positive residue of a number
 // in a given modulus
 func Lpr(a, n int) int {
@@ -14,12 +18,25 @@ func Lpr(a, n int) int {
 
 // Solves the equation ax=b mod n. Note that
 // if there are multiple LPR solutions that the
-// lowest one is returned.
-func Solve(a, b, n int) (x int) {
+// lowest one is returned. If there are no solutions,
+// then (0, NoSolution) is returned
+func Solve(a, b, n int) (int, error) {
 	gcd := gcdEuclid(a, n)
 
-	if gcd == 0 {
+	// If a and n are coprime, just multiply by the inverse
+	if gcd == 1 {
 		aInv, _ := eea(a, n)
-		return Lpr(aInv * b, n)
+		return Lpr(aInv * b, n), nil
 	}
+
+	// If gcd divides b evenly, then solve a/d x = b/d mod n/d (d = gcd)
+	if Lpr(b, gcd) == 0 {
+		ad := a / gcd
+		bd := b / gcd
+		nd := n / gcd
+		return Solve(ad, bd, nd)
+	}
+
+	// else, no solution
+	return 0, NoSolution
 }
