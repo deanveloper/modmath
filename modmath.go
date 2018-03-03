@@ -13,7 +13,7 @@ var NoSolution = errors.New("no solution")
 // in a given modulus
 func Lpr(a, m int) int {
 	c := a / m
-	return a - c *m
+	return a - c * m
 }
 
 // Solves the equation ax=b mod n. Note that
