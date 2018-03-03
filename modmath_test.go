@@ -39,12 +39,12 @@ func IgnoreTestSolveExp(t *testing.T) {
 }
 
 func TestSolveCrt(t *testing.T) {
-	nikola.SuggestEqual(t, 22, SolveCrt(2, 5, 1, 3))
+	nikola.SuggestEqual(t, 7, SolveCrt(2, 5, 1, 3))
 	nikola.SuggestEqual(t, 5871, SolveCrt(12, 93, 29, 127))
 	nikola.SuggestEqual(t, 1316, SolveCrt(5, 23, 70, 89))
 }
 
 func TestSolveCrtMany(t *testing.T) {
 	// I only have one example in my notes of this section
-	nikola.SuggestEqual(t, 49, []CrtEntry{{1, 3}, {4, 5}, {0, 7}})
+	nikola.SuggestEqual(t, 49, SolveCrtMany([]CrtEntry{{1, 3}, {4, 5}, {0, 7}}))
 }
