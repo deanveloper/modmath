@@ -51,18 +51,28 @@ func Solve(a, b, m int) (int, error) {
 // Solves the equation x=a^b mod m. Note that there is not as large of a worry
 // about overflowing, as a^b will not be calculated!
 func SolveExp(a, b, m int) int {
+	// Calculate the binary for b
 	// would use log2 but I don't want to depend on math library
-	ints := []int{a*a}
+	ints := []int{a}
 
-	for j := 4; j < b; j *= 2 {
+	for j := 2; j < b; j *= 2 {
 		last := ints[len(ints) - 1]
 		ints = append(ints, Lpr(last*last, m))
+	}
+
+	for i := 0; i < len(ints); i++ {
+		if b & ^i == b {
+			ints[i] = -1
+		}
 	}
 
 	// Make a map of the powers of the ints.
 	// So {7, 7, 4, 4, 7, 7} would become {7:4, 4:2}
 	eq := make(map[int]int)
 	for _, e := range ints {
+		if e == -1 {
+			continue
+		}
 		eq[e]++
 	}
 
@@ -74,16 +84,22 @@ func SolveExp(a, b, m int) int {
 
 		for k, v := range eq {
 			if v > 1 {
-				next[k] -= 2
-				next[Lpr(k*k, m)]++
+				lpr := Lpr(k*k, m)
+				next[k] = eq[k] - 2
+				next[lpr] = eq[lpr] + 1
 				modified = true
 			}
+		}
+		for k, v := range next {
+			eq[k] = v
 		}
 	}
 
 	prod := 1
-	for k := range eq {
-		prod = Lpr(prod * k, m)
+	for k, v := range eq {
+		for i := 0; i < v; i++ {
+			prod = Lpr(prod * k, m)
+		}
 	}
 
 	return prod

@@ -33,7 +33,7 @@ func TestSolve(t *testing.T) {
 	nikola.SuggestEqual(t, NoSolution, e)
 }
 
-func IgnoreTestSolveExp(t *testing.T) {
+func TestSolveExp(t *testing.T) {
 	nikola.SuggestEqual(t, 4, SolveExp(7, 365, 9))
 	nikola.SuggestEqual(t, 5, SolveExp(5, 291, 11))
 }
