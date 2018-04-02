@@ -1,6 +1,6 @@
 // Each of these tests just come out of either intuition or from my notes
 // in cryptography class... don't judge me
-package edu
+package modmath
 
 
 import (

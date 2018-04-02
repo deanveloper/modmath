@@ -1,4 +1,4 @@
-package edu
+package modmath
 
 // This file is for stuff related to the chinese remainder theorem!
 
