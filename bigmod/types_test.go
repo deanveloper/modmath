@@ -38,6 +38,20 @@ func (s SolveTest) Test(t *testing.T) {
 	nikola.SuggestEqual(t, s.ExpectedErr, e)
 }
 
+type SolveExpTest struct {
+	Expected *big.Int
+	A, B, M *big.Int
+}
+
+func NewSolveExpTest(exp int64, a, b, m int64) SolveExpTest {
+	return SolveExpTest{big.NewInt(exp), big.NewInt(a), big.NewInt(b), big.NewInt(m)}
+}
+
+func (s SolveExpTest) Test(t *testing.T) {
+	t.Helper()
+	nikola.SuggestTrue(t, s.Expected.Cmp(SolveExp(s.A, s.B, s.M)) == 0)
+}
+
 type CrtTest struct {
 	Expected *big.Int
 	A, M, B, N *big.Int

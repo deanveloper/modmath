@@ -22,10 +22,10 @@ func TestSolve(t *testing.T) {
 	NewSolveTest(0, NoSolution, 20, 5, 30).Test(t)
 }
 
-//func IgnoreTestSolveExp(t *testing.T) {
-//	nikola.SuggestEqual(t, 4, SolveExp(7, 365, 9))
-//	nikola.SuggestEqual(t, 5, SolveExp(5, 291, 11))
-//}
+func TestSolveExp(t *testing.T) {
+	NewSolveExpTest(4, 7, 365, 9).Test(t)
+	NewSolveExpTest(5, 5, 291, 11).Test(t)
+}
 
 func TestSolveCrt(t *testing.T) {
 	NewCrtTest(7, 2, 5, 1, 3).Test(t)

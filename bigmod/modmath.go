@@ -55,11 +55,17 @@ func Solve(a, b, m *big.Int) (*big.Int, error) {
 // about overflowing, as a^b will not be calculated!
 func SolveExp(a, b, m *big.Int) *big.Int {
 	// would use log2 but I don't want to depend on math library
-	ints := []*big.Int{new(big.Int).Mul(a, a)}
+	ints := []*big.Int{new(big.Int).Set(a)}
 
-	for j := big.NewInt(4); j.Cmp(b) < 0; j.Add(j, j) {
+	for j := big.NewInt(2); j.Cmp(b) < 0; j.Add(j, j) {
 		last := ints[len(ints) - 1]
 		ints = append(ints, Lpr(new(big.Int).Mul(last, last), m))
+	}
+
+	for i := 0; i < len(ints); i++ {
+		if b.Bit(i) == 0 {
+			ints[i] = nil
+		}
 	}
 
 	// Make a map of the powers of the ints.
@@ -67,6 +73,12 @@ func SolveExp(a, b, m *big.Int) *big.Int {
 	eq := make(map[*big.Int]*big.Int)
 	one := big.NewInt(1)
 	for _, e := range ints {
+		if e == nil {
+			continue
+		}
+		if eq[e] == nil {
+			eq[e] = new(big.Int)
+		}
 		eq[e].Add(eq[e], one)
 	}
 
@@ -84,11 +96,16 @@ func SolveExp(a, b, m *big.Int) *big.Int {
 				modified = true
 			}
 		}
+		for k, v := range next {
+			eq[k] = v
+		}
 	}
 
 	prod := big.NewInt(1)
-	for k := range eq {
-		prod = Lpr(new(big.Int).Mul(prod, k), m)
+	for k, v := range eq {
+		for i := big.NewInt(0); i.Cmp(v) < 0; i.Add(i, one) {
+			prod = Lpr(new(big.Int).Mul(prod, k), m)
+		}
 	}
 
 	return prod
