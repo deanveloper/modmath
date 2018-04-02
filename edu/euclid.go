@@ -1,4 +1,4 @@
-package modmath
+package edu
 
 // Note: this file is only for performing the euclidean algorithm
 //       and extended euclidean algorithm, and should not have any

@@ -1,11 +1,11 @@
 // Each of these tests just come out of either intuition or from my notes
 // in cryptography class... don't judge me
-package bigmod_test
+package bigmod
 
 
 import (
 	"testing"
-	. "github.com/deanveloper/modmath/bigmod"
+	. "github.com/deanveloper/modmath/edu/bigmodgmod"
 )
 
 func TestLpr(t *testing.T) {
