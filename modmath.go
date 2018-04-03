@@ -16,7 +16,7 @@ var NoSolution = errors.New("no solution")
 // different from the remainder (%) operator when working
 // with negative numbers.
 func Lpr(a, m int) int {
-	return (a % m + a) % m
+	return (a % m + m) % m
 }
 
 // Solves the equation `ax=b mod n` for x. Note that

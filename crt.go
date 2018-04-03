@@ -26,7 +26,7 @@ func SolveCrtMany(eqs []CrtEntry) int {
 	eqs2 := make([]CrtEntry, len(eqs))
 	copy(eqs2, eqs)
 
-	for i := 1; i < len(eqs); i++ {
+	for i := 1; i < len(eqs2); i++ {
 		x := SolveCrt(eqs2[i-1].A, eqs2[i-1].M, eqs2[i].A, eqs2[i].M)
 		eqs2[i] = CrtEntry{x, eqs2[i-1].M * eqs2[i].M}
 	}

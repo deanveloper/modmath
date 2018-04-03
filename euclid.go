@@ -29,5 +29,5 @@ func ExtendedGcd(a, b int) (x, y, gcd int) {
 		x0, x1 = x1, x0 - q * x1
 		y0, y1 = y1, y0 - q * y1
 	}
-	return b, x0, y0
+	return y0, x0, b
 }
