@@ -6,7 +6,7 @@ package modmath_test
 import (
 	"testing"
 	"github.com/deanveloper/nikola"
-	. "github.com/deanveloper/modmath/edu/modmath"
+	. "github.com/deanveloper/modmath"
 )
 
 func TestLpr(t *testing.T) {

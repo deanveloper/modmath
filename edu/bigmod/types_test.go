@@ -1,10 +1,10 @@
-package bigmod
+package bigmod_test
 
 import (
 	"math/big"
 	"testing"
 	"github.com/deanveloper/nikola"
-	. "github.com/deanveloper/modmath/edu/bigmodgmod"
+	. "github.com/deanveloper/modmath/edu/bigmod"
 )
 
 type LprTest struct {
