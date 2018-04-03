@@ -27,10 +27,10 @@ func SolveCrtMany(eqs []CrtEntry) int {
 	copy(eqs2, eqs)
 
 	for i := 1; i < len(eqs); i++ {
-		x := SolveCrt(eqs[i-1].A, eqs[i-1].M, eqs[i].A, eqs[i].M)
-		eqs[i] = CrtEntry{x, eqs[i-1].M * eqs[i].M}
+		x := SolveCrt(eqs2[i-1].A, eqs2[i-1].M, eqs2[i].A, eqs2[i].M)
+		eqs2[i] = CrtEntry{x, eqs2[i-1].M * eqs2[i].M}
 	}
-	return solveCrtManyIntern(eqs2)
+	return eqs2[len(eqs2) - 1].A
 }
 
 func solveCrtManyIntern(eqs []CrtEntry) int {
