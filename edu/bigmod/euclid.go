@@ -3,8 +3,7 @@ package bigmod
 import "math/big"
 
 // Note: this file is only for performing the euclidean algorithm
-//       and extended euclidean algorithm, and should not have any
-//       public-facing entries
+//       and extended euclidean algorithm
 
 // Finds the GCD using the euclidean algorithm
 func Gcd(a, b *big.Int) *big.Int {

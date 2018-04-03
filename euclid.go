@@ -1,8 +1,7 @@
 package modmath
 
 // Note: this file is only for performing the euclidean algorithm
-//       and extended euclidean algorithm, and should not have any
-//       public-facing entries
+//       and extended euclidean algorithm
 
 // Finds the Greatest Common Divisor using the euclidean algorithm. (Optimized to not use recursion)
 func Gcd(a, b int) int {
