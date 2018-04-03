@@ -8,6 +8,7 @@ package bigmod
 import (
 	"errors"
 	"math/big"
+	"fmt"
 )
 
 var NoSolution = errors.New("no solution")
@@ -17,7 +18,8 @@ var NoSolution = errors.New("no solution")
 // lowest one is returned. If there are no solutions,
 // then (nil, NoSolution) is returned
 func Solve(a, b, m *big.Int) (*big.Int, error) {
-	gcd := new(big.Int).GCD(nil, nil, a, b)
+	gcd := new(big.Int).GCD(nil, nil, a, m)
+	fmt.Println(a, b, m, gcd)
 
 	// If a and m are coprime, just multiply by the inverse
 	if gcd.IsUint64() && gcd.Uint64() == 1 {

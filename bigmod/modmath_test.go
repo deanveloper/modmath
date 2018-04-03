@@ -5,21 +5,13 @@ package bigmod_test
 
 import (
 	"testing"
-	. "github.com/deanveloper/modmath/edu/bigmod"
+	. "github.com/deanveloper/modmath/bigmod"
 )
-
-func TestLpr(t *testing.T) {
-
-	NewLprTest(0, 0, 5).Test(t)
-	NewLprTest(1, 1, 10).Test(t)
-	NewLprTest(2, 202, 10).Test(t)
-	NewLprTest(3, 47291873, 4729187).Test(t)
-}
 
 func TestSolve(t *testing.T) {
 	NewSolveTest(5, nil, 3, 5, 10).Test(t)
 	NewSolveTest(4, nil, 20, 5, 25).Test(t)
-	NewSolveTest(0, NoSolution, 20, 5, 30).Test(t)
+	NewSolveTest(-1, NoSolution, 20, 5, 30).Test(t)
 }
 
 func TestSolveExp(t *testing.T) {

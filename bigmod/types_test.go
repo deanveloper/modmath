@@ -4,22 +4,8 @@ import (
 	"math/big"
 	"testing"
 	"github.com/deanveloper/nikola"
-	. "github.com/deanveloper/modmath/edu/bigmod"
+	. "github.com/deanveloper/modmath/bigmod"
 )
-
-type LprTest struct {
-	Expected *big.Int
-	A, M *big.Int
-}
-
-func NewLprTest(exp, a, m int64) LprTest {
-	return LprTest{big.NewInt(exp), big.NewInt(a), big.NewInt(m)}
-}
-
-func (l LprTest) Test(t *testing.T) {
-	t.Helper()
-	nikola.SuggestTrue(t, l.Expected.Cmp(Lpr(l.A, l.M)) == 0)
-}
 
 type SolveTest struct {
 	Expected *big.Int
@@ -28,13 +14,21 @@ type SolveTest struct {
 }
 
 func NewSolveTest(exp int64, err error, a, b, m int64) SolveTest {
-	return SolveTest{big.NewInt(exp), err, big.NewInt(a), big.NewInt(b), big.NewInt(m)}
+	var expected *big.Int = nil
+	if exp != -1 {
+		expected = big.NewInt(exp)
+	}
+	return SolveTest{expected, err, big.NewInt(a), big.NewInt(b), big.NewInt(m)}
 }
 
 func (s SolveTest) Test(t *testing.T) {
 	t.Helper()
 	r, e := Solve(s.A, s.B, s.M)
-	nikola.SuggestTrue(t, s.Expected.Cmp(r) == 0)
+	if s.Expected == nil {
+		nikola.SuggestEqual(t, nil, r)
+	} else {
+		nikola.SuggestTrue(t, s.Expected.Cmp(r) == 0)
+	}
 	nikola.SuggestEqual(t, s.ExpectedErr, e)
 }
 
