@@ -29,11 +29,11 @@ func Lpr(a, m *big.Int) *big.Int {
 // lowest one is returned. If there are no solutions,
 // then (0, NoSolution) is returned
 func Solve(a, b, m *big.Int) (*big.Int, error) {
-	gcd := gcdEuclid(a, m)
+	gcd := Gcd(a, m)
 
 	// If a and m are coprime, just multiply by the inverse
 	if gcd.IsUint64() && gcd.Uint64() == 1 {
-		aInv, _, _:= eea(a, m)
+		aInv, _, _:= ExtendedGcd(a, m)
 		aInv = Lpr(aInv, m)
 		aInvB := new(big.Int).Mul(aInv, b)
 		return Lpr(aInvB, m), nil

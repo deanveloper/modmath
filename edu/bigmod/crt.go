@@ -6,7 +6,7 @@ import "math/big"
 
 // Solves x=a mod m; x=b mod n by using the chinese remainder theorem.
 func SolveCrt(a, m, b, n *big.Int) *big.Int {
-	s, t, _ := eea(m, n)
+	s, t, _ := ExtendedGcd(m, n)
 
 	// let eqn = bsm, eqn2 = ant
 	eqn := new(big.Int)

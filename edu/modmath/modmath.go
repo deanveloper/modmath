@@ -27,11 +27,11 @@ func Lpr(a, m int) int {
 // lowest one is returned. If there are no solutions,
 // then (0, NoSolution) is returned
 func Solve(a, b, m int) (int, error) {
-	gcd := gcdEuclid(a, m)
+	gcd := Gcd(a, m)
 
 	// If a and m are coprime, just multiply by the inverse
 	if gcd == 1 {
-		aInv, _, _:= eea(a, m)
+		aInv, _, _:= ExtendedGcd(a, m)
 		aInv = Lpr(aInv, m)
 		return Lpr(aInv * b, m), nil
 	}

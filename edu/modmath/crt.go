@@ -4,7 +4,7 @@ package modmath
 
 // Solves x=a mod m; x=b mod n by using the chinese remainder theorem.
 func SolveCrt(a, m, b, n int) int {
-	s, t, _ := eea(m, n)
+	s, t, _ := ExtendedGcd(m, n)
 	return Lpr(b * s * m + a * n * t, m * n)
 }
 
