@@ -25,7 +25,7 @@ func (s SolveTest) Test(t *testing.T) {
 	t.Helper()
 	r, e := Solve(s.A, s.B, s.M)
 	if s.Expected == nil {
-		nikola.SuggestEqual(t, nil, r)
+		nikola.SuggestTrue(t, nil == r)
 	} else {
 		nikola.SuggestTrue(t, s.Expected.Cmp(r) == 0)
 	}
