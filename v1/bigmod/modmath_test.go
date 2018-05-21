@@ -5,7 +5,7 @@ package bigmod_test
 
 import (
 	"testing"
-	. "github.com/deanveloper/modmath/bigmod"
+	. "github.com/deanveloper/modmath/v1/bigmod"
 )
 
 func TestSolve(t *testing.T) {

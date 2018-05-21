@@ -53,7 +53,7 @@ func SolveExp(a, b, m int) int {
 	}
 
 	for i := 0; i < len(ints); i++ {
-		if b & ^i == b {
+		if b &^ i == b {
 			ints[i] = -1
 		}
 	}
