@@ -14,11 +14,6 @@ func TestSolve(t *testing.T) {
 	NewSolveTest(-1, NoSolution, 20, 5, 30).Test(t)
 }
 
-func TestPower(t *testing.T) {
-	NewPowerTest(4, 7, 365, 9).Test(t)
-	NewPowerTest(5, 5, 291, 11).Test(t)
-}
-
 func TestChineseRemainder(t *testing.T) {
 	NewChineseRemainderTest(7, 2, 5, 1, 3).Test(t)
 	NewChineseRemainderTest(5871, 12, 93, 29, 127).Test(t)

@@ -34,22 +34,6 @@ func (s SolveTest) Test(t *testing.T) {
 	nikola.SuggestEqual(t, s.ExpectedErr, e)
 }
 
-// === Test the `Power` function
-
-type PowerTest struct {
-	Expected *big.Int
-	A, B, M *big.Int
-}
-
-func NewPowerTest(exp int64, a, b, m int64) PowerTest {
-	return PowerTest{big.NewInt(exp), big.NewInt(a), big.NewInt(b), big.NewInt(m)}
-}
-
-func (s PowerTest) Test(t *testing.T) {
-	t.Helper()
-	nikola.SuggestTrue(t, s.Expected.Cmp(Power(s.A, s.B, s.M)) == 0)
-}
-
 // === Test the `ChineseRemainder` function
 
 type ChineseRemainderTest struct {

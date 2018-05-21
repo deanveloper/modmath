@@ -43,7 +43,7 @@ func NewSolveExpTest(exp int64, a, b, m int64) SolveExpTest {
 
 func (s SolveExpTest) Test(t *testing.T) {
 	t.Helper()
-	nikola.SuggestTrue(t, s.Expected.Cmp(SolveExp(s.A, s.B, s.M)) == 0)
+	nikola.SuggestEqual(t, s.Expected.Text(10), SolveExp(s.A, s.B, s.M).Text(10))
 }
 
 type CrtTest struct {
