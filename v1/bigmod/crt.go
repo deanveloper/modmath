@@ -6,7 +6,10 @@ import "math/big"
 
 // Solves x=a mod m; x=b mod n by using the chinese remainder theorem.
 func SolveCrt(a, m, b, n *big.Int) *big.Int {
-	s, t, _ := ExtendedGcd(m, n)
+	gcd := new(big.Int)
+	s := new(big.Int)
+	t := new(big.Int)
+	gcd.GCD(s, t, m, n)
 
 	// let eqn = bsm, eqn2 = ant
 	eqn := new(big.Int)
@@ -19,7 +22,7 @@ func SolveCrt(a, m, b, n *big.Int) *big.Int {
 	// now, let eqn = bsm + ant, eqn2 = m * n
 	eqn.Add(eqn, eqn2)
 	eqn2.Mul(m, n)
-	return Lpr(eqn, eqn2)
+	return eqn.Mod(eqn, eqn2)
 }
 
 // Represents an entry in the Extended Chinese Remainder Theorem
@@ -32,10 +35,10 @@ type CrtEntry struct {
 // If len(eqs) == 0, it panics.
 func SolveCrtMany(eqs []CrtEntry) *big.Int {
 	if len(eqs) == 0 {
-		return new(big.Int)
+		panic("cannot have 0 entries to solve")
 	}
 	if len(eqs) == 1 {
-		return Lpr(eqs[0].A, eqs[0].N)
+		return new(big.Int).Mod(eqs[0].A, eqs[0].N)
 	}
 	eqs2 := make([]CrtEntry, len(eqs))
 	copy(eqs2, eqs)

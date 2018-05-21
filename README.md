@@ -3,8 +3,17 @@
 -----
 A Go API to solve Modular Arithmetic Problems. [GoDoc]
 
-The `edu` folder uses inefficient ways to solve the problems, and exists mostly for educational purposes.
-I would not use this if I were you. A version that actually uses things such as built-in modulus operators, power
-functions, etc. will be made available when I have time.
+The package is go-gettable, although it is recommended to use [vgo].
 
-[GoDoc]: https://godoc.org/github.com/Deanveloper/modmath
+```
+vgo get -u github.com/deanveloper/modmath/v1
+
+or
+
+vgo get -u github.com/deanveloper/modmath/v1/bigmod
+```
+
+If you do not use [vgo], you may use `go get` instead of `vgo get` and everything will still work properly.
+
+[GoDoc]: https://godoc.org/github.com/deanveloper/modmath
+[vgo]: https://golang.org/x/vgo
